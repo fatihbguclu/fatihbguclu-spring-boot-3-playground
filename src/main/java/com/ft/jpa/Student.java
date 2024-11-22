@@ -7,6 +7,7 @@ import lombok.*;
 @Table(name = "student")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Student {
