@@ -24,4 +24,15 @@ public class StudentRepository {
         return allStudent.getResultList();
     }
 
+
+    public Student findById(Integer id) {
+        return entityManager.find(Student.class, id);
+    }
+
+    public List<Student> findByLastName(String theLastName) {
+        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student WHERE lastName=:theData", Student.class);
+        theQuery.setParameter("theData", theLastName);
+        return theQuery.getResultList();
+    }
+
 }

@@ -20,6 +20,7 @@ public class Application {
         return runner -> {
             createStudents(studentRepository);
             getAllStudents(studentRepository);
+            findStudentsByLastName(studentRepository, "Public");
         };
     }
 
@@ -36,6 +37,14 @@ public class Application {
 
     private void getAllStudents(StudentRepository studentRepository) {
         studentRepository.findAllStudent().forEach(student -> System.out.println(student.toString()));
+    }
+
+    private void findStudentsByLastName(StudentRepository studentRepository, String  lastName) {
+        List<Student> theStudents = studentRepository.findByLastName(lastName);
+        System.out.println("Students whose last names is : " + lastName);
+        for (Student tempStudent : theStudents) {
+            System.out.println(tempStudent);
+        }
     }
 
 }
