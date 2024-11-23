@@ -35,4 +35,20 @@ public class StudentRepository {
         return theQuery.getResultList();
     }
 
+    @Transactional
+    public void update(Student theStudent) {
+        entityManager.merge(theStudent);
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        Student theStudent = entityManager.find(Student.class, id);
+        entityManager.remove(theStudent);
+    }
+
+    @Transactional
+    public int deleteAll() {
+        return entityManager.createQuery("DELETE FROM Student").executeUpdate();
+    }
+
 }

@@ -21,6 +21,9 @@ public class Application {
             createStudents(studentRepository);
             getAllStudents(studentRepository);
             findStudentsByLastName(studentRepository, "Public");
+            updateStudent(studentRepository);
+            deleteStudent(studentRepository);
+            deleteAllStudents(studentRepository);
         };
     }
 
@@ -47,4 +50,24 @@ public class Application {
         }
     }
 
+    private void updateStudent(StudentRepository studentRepository) {
+        System.out.println("Getting student with id: " + 1);
+        Student myStudent = studentRepository.findById(1);
+
+        System.out.println("Updating student ...");
+        myStudent.setFirstName("John");
+
+        studentRepository.update(myStudent);
+        System.out.println("Updated student: " + myStudent);
+    }
+
+    private void deleteAllStudents(StudentRepository studentRepository) {
+        System.out.println("Deleting all students");
+        System.out.println("Deleted row count: " + studentRepository.deleteAll());
+    }
+
+    private void deleteStudent(StudentRepository studentRepository) {
+        System.out.println("Deleting student id: " + 3);
+        studentRepository.delete(3);
+    }
 }
