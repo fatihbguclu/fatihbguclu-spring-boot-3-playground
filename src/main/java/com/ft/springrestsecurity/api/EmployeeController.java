@@ -1,7 +1,7 @@
 package com.ft.springrestsecurity.api;
 
-import com.ft.springrestapi.model.Employee;
-import com.ft.springrestapi.service.EmployeeService;
+import com.ft.springrestsecurity.model.Employee;
+import com.ft.springrestsecurity.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

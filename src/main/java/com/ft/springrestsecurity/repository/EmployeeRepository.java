@@ -1,6 +1,6 @@
 package com.ft.springrestsecurity.repository;
 
-import com.ft.springrestapi.model.Employee;
+import com.ft.springrestsecurity.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

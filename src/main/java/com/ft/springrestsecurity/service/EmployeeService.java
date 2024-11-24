@@ -1,7 +1,7 @@
 package com.ft.springrestsecurity.service;
 
-import com.ft.springrestapi.model.Employee;
-import com.ft.springrestapi.repository.EmployeeRepository;
+import com.ft.springrestsecurity.model.Employee;
+import com.ft.springrestsecurity.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
