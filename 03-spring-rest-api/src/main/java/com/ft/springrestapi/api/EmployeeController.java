@@ -3,9 +3,8 @@ package com.ft.springrestapi.api;
 import com.ft.springrestapi.model.Employee;
 import com.ft.springrestapi.service.EmployeeService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,4 +29,19 @@ public class EmployeeController {
         return optionalEmployee.get();
     }
 
+    @PostMapping("/employees")
+    public Employee createEmployee(@RequestBody Employee employee) {
+        return employeeService.createEmployee(employee);
+    }
+
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee employee) {
+        return employeeService.updateEmployee(employee);
+    }
+
+    @DeleteMapping("/employees/{employeeId}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable Long employeeId) {
+        employeeService.deleteEmployeeById(employeeId);
+        return ResponseEntity.ok("Deleted employee with id : " + employeeId);
+    }
 }
