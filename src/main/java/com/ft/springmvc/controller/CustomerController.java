@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@Controller
+@Controller("/customer")
 public class CustomerController {
 
     @InitBinder
@@ -21,7 +21,7 @@ public class CustomerController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public String showForm(Model theModel) {
         theModel.addAttribute("customer", new Customer());
         return "customer-form";
