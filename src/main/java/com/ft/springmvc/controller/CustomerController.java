@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@Controller("/customer")
+@Controller
 public class CustomerController {
 
     @InitBinder
@@ -21,13 +21,13 @@ public class CustomerController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @GetMapping()
+    @GetMapping("/customer")
     public String showForm(Model theModel) {
         theModel.addAttribute("customer", new Customer());
         return "customer-form";
     }
 
-    @PostMapping("/processForm")
+    @PostMapping("/customer/processForm")
     public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult theBindingResult) {
         System.out.println("Last name: |" + theCustomer.getLastName() + "|");
         System.out.println("Binding results: " + theBindingResult.toString());
