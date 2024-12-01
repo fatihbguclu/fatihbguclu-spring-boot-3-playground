@@ -24,6 +24,7 @@
         <module>04-spring-rest-security</module>
         <module>05-spring-mvc</module>
         <module>06-spring-mvc-crud</module>
+        <module>07-spring-mvc-security</module>
     </modules>
 
     <properties>
