@@ -1,5 +1,6 @@
 package com.ft.springmvchibernateadvanced.repository;
 
+import com.ft.springmvchibernateadvanced.model.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,19 @@ public class InstructorDao {
     public void deleteInstructorById(int id) {
         Instructor tempInstructor = entityManager.find(Instructor.class, id);
         entityManager.remove(tempInstructor);
+    }
+
+    public InstructorDetail findInstructorDetailById(int id) {
+        return entityManager.find(InstructorDetail.class, id);
+    }
+
+    @Transactional
+    public void deleteInstructorDetailById(int theId) {
+        // retrieve instructor detail
+        InstructorDetail tempInstructorDetail = entityManager.find(InstructorDetail.class, theId);
+        // remove the associated object reference break bidirectional link
+        tempInstructorDetail.getInstructor().setInstructorDetail(null);
+        // delete the instructor detail
+        entityManager.remove(tempInstructorDetail);
     }
 }
