@@ -3,6 +3,7 @@ package com.ft.springmvchibernateadvanced.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -31,4 +32,11 @@ public class Course {
     @JoinColumn(name = "course_id")
     private List<Review> reviews;
 
+    @Transient
+    public void addReview(Review review) {
+        if (reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        reviews.add(review);
+    }
 }
