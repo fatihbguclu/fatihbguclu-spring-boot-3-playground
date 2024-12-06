@@ -1,7 +1,9 @@
 package com.ft.springmvchibernateadvanced;
 
+import com.ft.springmvchibernateadvanced.model.Course;
 import com.ft.springmvchibernateadvanced.model.Instructor;
 import com.ft.springmvchibernateadvanced.model.InstructorDetail;
+import com.ft.springmvchibernateadvanced.model.Review;
 import com.ft.springmvchibernateadvanced.repository.InstructorDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -18,13 +20,23 @@ public class Application implements CommandLineRunner {
         SpringApplication.run(Application.class, args);
     }
 
+    /*
     @Override
     public void run(String... args) throws Exception {
+        // One To One Example
         createInstructor();
         findInstructor();
         deleteInstructor();
         findInstructorDetail();
         deleteInstructorDetail();
+    }*/
+
+    @Override
+    public void run(String... args) throws Exception {
+        // One To Many Example
+        createCourseAndReviews();
+        retrieveCourseAndReviews();
+        deleteCourseAndReviews();
     }
 
     private void createInstructor() {
@@ -67,6 +79,30 @@ public class Application implements CommandLineRunner {
     private void deleteInstructorDetail() {
         System.out.println("Deleting instructor detail id: " + 1);
         instructorDao.deleteInstructorDetailById(1);
+        System.out.println("Done!");
+    }
+
+    private void deleteCourseAndReviews() {
+        System.out.println("Deleting course id: " + 1);
+        instructorDao.deleteCourseById(1);
+        System.out.println("Done!");
+    }
+
+    private void retrieveCourseAndReviews() {
+        Course tempCourse = instructorDao.findCourseAndReviewsByCourseId(1);
+        System.out.println(tempCourse);
+        System.out.println(tempCourse.getReviews());
+    }
+
+    private void createCourseAndReviews() {
+        Course tempCourse = new Course(null, "Pacman - How To Score One Million Points", null, null);
+        tempCourse.addReview(new Review(null, "Great course ... loved it!"));
+        tempCourse.addReview(new Review(null, "Cool course, job well done."));
+        tempCourse.addReview(new Review(null, "What a dumb course, you are an idiot!"));
+        System.out.println("Saving the course");
+        System.out.println(tempCourse);
+        System.out.println(tempCourse.getReviews());
+        instructorDao.save(tempCourse);
         System.out.println("Done!");
     }
 }
