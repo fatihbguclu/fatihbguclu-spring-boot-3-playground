@@ -26,6 +26,7 @@
         <module>06-spring-mvc-crud</module>
         <module>07-spring-mvc-security</module>
         <module>08-spring-mvc-hibernate-advanced</module>
+        <module>09-spring-aop</module>
     </modules>
 
     <properties>
