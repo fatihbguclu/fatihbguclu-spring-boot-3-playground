@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class AopApplication implements CommandLineRunner {
@@ -38,6 +40,20 @@ public class AopApplication implements CommandLineRunner {
         membershipRepository.addSillyMember();
         membershipRepository.goToSleep();
 
-        accountRepository.findAccounts();
+        accountRepository.findAccounts(false);
+    }
+
+    private void demoTheAfterThrowingAdvice() {
+        List<Account> accounts = null;
+        try {
+            accounts = accountRepository.findAccounts(true);
+        }
+        catch (Exception exc) {
+            System.out.println("\n\nMain Program: ... caught exception: " + exc);
+        }
+        System.out.println("\n\nMain Program: demoTheAfterThrowingAdvice");
+        System.out.println("----");
+        System.out.println(accounts);
+        System.out.println("\n");
     }
 }

@@ -3,6 +3,7 @@ package com.ft.springaop.aspect;
 import com.ft.springaop.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -34,11 +35,18 @@ public class LoggingAspect {
         });
     }
 
-    @AfterReturning(pointcut = "execution(* com.ft.springaop.repository.AccountRepository.findAccounts())", returning = "accounts")
+    @AfterReturning(pointcut = "execution(* com.ft.springaop.repository.AccountRepository.findAccounts(..))", returning = "accounts")
     public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> accounts) {
         String method = joinPoint.getSignature().toShortString();
         System.out.println("\n=====>>> Executing @AfterReturning on method: " + method);
         System.out.println("\n=====>>> result is: " + accounts);
+    }
+
+    @AfterThrowing(pointcut = "execution(* com.ft.springaop.repository.AccountRepository.findAccounts(..))", throwing = "ex")
+    public void afterThrowingFindAccountsAdvice(JoinPoint joinPoint, Throwable ex) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n=====>>> Executing @AfterThrowing on method: " + method);
+        System.out.println("\n=====>>> The exception is: " + ex);
     }
 
 }

@@ -16,7 +16,10 @@ public class AccountRepository {
         System.out.println(getClass() + ": DOING MY DB WORK: ADDING AN ACCOUNT");
     }
 
-    public List<Account> findAccounts() {
+    public List<Account> findAccounts(boolean throwEx) {
+        if (throwEx) {
+            throw new RuntimeException("throwing runtime exception");
+        }
         List<Account> myAccounts = new ArrayList<>();
         Account temp1 = new Account("John", "Silver");
         Account temp2 = new Account("Madhu", "Platinum");
