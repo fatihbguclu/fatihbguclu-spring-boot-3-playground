@@ -23,7 +23,8 @@ public class AopApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        demoTheBeforeAdvice();
+        //demoTheBeforeAdvice();
+        demoTheAfterThrowingAdvice();
     }
 
     private void demoTheBeforeAdvice() {
