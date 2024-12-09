@@ -37,5 +37,7 @@ public class AopApplication implements CommandLineRunner {
 
         membershipRepository.addSillyMember();
         membershipRepository.goToSleep();
+
+        accountRepository.findAccounts();
     }
 }

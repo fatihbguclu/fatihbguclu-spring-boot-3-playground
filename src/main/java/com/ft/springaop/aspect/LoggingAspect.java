@@ -2,6 +2,7 @@ package com.ft.springaop.aspect;
 
 import com.ft.springaop.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -9,6 +10,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Aspect
 @Component
@@ -30,6 +32,13 @@ public class LoggingAspect {
                 System.out.println("account level: " + account.getLevel());
             }
         });
+    }
+
+    @AfterReturning(pointcut = "execution(* com.ft.springaop.repository.AccountRepository.findAccounts())", returning = "accounts")
+    public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> accounts) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n=====>>> Executing @AfterReturning on method: " + method);
+        System.out.println("\n=====>>> result is: " + accounts);
     }
 
 }
