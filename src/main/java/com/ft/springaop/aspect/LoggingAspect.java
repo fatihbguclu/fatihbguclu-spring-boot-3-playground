@@ -17,12 +17,19 @@ import java.util.List;
 public class LoggingAspect {
 
     @Around("execution(* com.ft.springaop.service.TrafficFortuneService.getFortune(..))")
-    public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
-        String method = theProceedingJoinPoint.getSignature().toShortString();
+    public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        String method = proceedingJoinPoint.getSignature().toShortString();
         System.out.println("\n=====>>> Executing @Around on method: " + method);
 
         long begin = System.currentTimeMillis();
-        Object result = theProceedingJoinPoint.proceed();
+        Object result;
+        try {
+            result = proceedingJoinPoint.proceed();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            result = "handle exception message";
+        }
+
         long end = System.currentTimeMillis();
 
         long duration = end - begin;

@@ -35,7 +35,7 @@ public class AopApplication implements CommandLineRunner {
         System.out.println("\nMain Program: demoTheAroundAdvice");
         System.out.println("Calling getFortune()");
 
-        String data = trafficFortuneService.getFortune();
+        String data = trafficFortuneService.getFortune(true);
 
         System.out.println("\nMy fortune is: " + data);
         System.out.println("Finished");
