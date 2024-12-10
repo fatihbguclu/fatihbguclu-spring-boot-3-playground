@@ -2,6 +2,7 @@ package com.ft.springaop;
 
 import com.ft.springaop.repository.AccountRepository;
 import com.ft.springaop.repository.MembershipRepository;
+import com.ft.springaop.service.TrafficFortuneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,8 @@ public class AopApplication implements CommandLineRunner {
 
     private final MembershipRepository membershipRepository;
 
+    private final TrafficFortuneService trafficFortuneService;
+
     public static void main(String[] args) {
         SpringApplication.run(AopApplication.class, args);
     }
@@ -24,7 +27,18 @@ public class AopApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //demoTheBeforeAdvice();
-        demoTheAfterThrowingAdvice();
+        //demoTheAfterThrowingAdvice();
+        demoTheAroundAdvice();
+    }
+
+    private void demoTheAroundAdvice() {
+        System.out.println("\nMain Program: demoTheAroundAdvice");
+        System.out.println("Calling getFortune()");
+
+        String data = trafficFortuneService.getFortune();
+
+        System.out.println("\nMy fortune is: " + data);
+        System.out.println("Finished");
     }
 
     private void demoTheBeforeAdvice() {
