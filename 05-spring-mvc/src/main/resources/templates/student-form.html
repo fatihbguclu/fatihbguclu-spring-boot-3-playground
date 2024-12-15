@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h3>Student Registration Form</h3>
+
+        <form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+            First name:
+            <label><input type="text" th:field="*{firstName}"/></label>
+            <br><br>
+            Last name:
+            <label><input type="text" th:field="*{lastName}"/></label>
+            <br><br>
+            Country:
+            <label>
+                <select th:field="*{country}">
+                    <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+                </select>
+            </label>
+            <br><br>
+            Favorite Programming Language:
+            <label>
+                <input type="radio" th:field="*{favoriteLanguage}"
+                       th:each="tempLang : ${languages}"
+                       th:value="${tempLang}"
+                       th:text="${tempLang}"/>
+            </label>
+            <br><br>
+            Favorite Operating Systems:
+            <label>
+                <input type="checkbox" th:field="*{favoriteSystems}"
+                       th:each="tempSystem : ${systems}"
+                       th:value="${tempSystem}"
+                       th:text="${tempSystem}"/>
+            </label>
+            <br><br>
+            <input type="submit" value="Submit"/>
+
+        </form>
+    </body>
+</html>
